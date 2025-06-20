@@ -49,3 +49,8 @@ Plugin based on the [IntelliJ Platform Plugin Template][template].
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template
 [docs:plugin-description]: https://plugins.jetbrains.com/docs/intellij/plugin-user-experience.html#plugin-description-and-presentation
+
+## ToDo List
+- [] 支持选定一个方法，向上查找方法调用入口
+- [] 支持输入一组函数，递归查找代码中所有在使用的方法
+- [] 支持反选出所有未使用的方法

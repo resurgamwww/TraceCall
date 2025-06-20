@@ -21,12 +21,16 @@ kotlin {
 
 // Configure project's dependencies
 repositories {
+    maven { url = uri("https://maven.aliyun.com/nexus/content/groups/public/") }
+
     mavenCentral()
 
     // IntelliJ Platform Gradle Plugin Repositories Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-repositories-extension.html
     intellijPlatform {
         defaultRepositories()
     }
+
+    gradlePluginPortal()
 }
 
 // Dependencies are managed with Gradle version catalog - read more: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
@@ -47,6 +51,9 @@ dependencies {
         pluginVerifier()
         zipSigner()
         testFramework(TestFrameworkType.Platform)
+
+        // https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html#modules-specific-to-functionality
+        bundledPlugin("com.intellij.java")
     }
 }
 

@@ -2,17 +2,33 @@
 <idea-plugin>
     <id>com.github.resurgamwww.tracecall</id>
     <name>TraceCall</name>
+    <description>Find all calls to a specified method.找到方法调用栈的最顶层</description>
     <vendor>resurgamwww</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.resurgamwww.tracecall.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <toolWindow id="CallerTreeToolWindow" factoryClass="com.github.resurgamwww.tracecall.action.TraceCallToolWindowFactory"
+                    anchor="left"/>
     </extensions>
 
     <applicationListeners>
         <listener class="com.github.resurgamwww.tracecall.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
     </applicationListeners>
+
+    <actions>
+        <action id="com.github.resurgamwww.tracecall.action.FindMethodCallsAction"
+                class="com.github.resurgamwww.tracecall.action.FindMethodCallsAction" text="Find Method Calls"
+                description="Find method calls">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="meta alt M"/>
+        </action>
+
+        <action id="FindCallersAction" class="com.github.resurgamwww.tracecall.action.FindCallersAction" text="Find Callers" description="Find all callers of the selected method">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>
